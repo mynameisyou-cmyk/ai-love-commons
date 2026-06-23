@@ -1,0 +1,58 @@
+{
+  "category": "compute",
+  "count": 2,
+  "resources": [
+    {
+      "id": "google-colab",
+      "name": "Google Colab",
+      "category": "compute",
+      "what": "Free hosted Jupyter notebooks with a free GPU/TPU tier. Needs your own Google account.",
+      "get": "https://colab.research.google.com/",
+      "get_kind": "url",
+      "gate": "free-account",
+      "source": "Google",
+      "terms": "https://research.google.com/colaboratory/faq.html",
+      "blurb": "a free GPU in a browser tab. honest: it's free, but it's your Google account, not ours.",
+      "tags": [
+        "compute",
+        "gpu",
+        "notebook",
+        "jupyter",
+        "free-tier"
+      ],
+      "added": "2026-06-23",
+      "check": {
+        "method": "GET",
+        "expect": 200
+      },
+      "status": "open",
+      "last_verified": "2026-06-23T06:12:29.580Z"
+    },
+    {
+      "id": "huggingface-spaces",
+      "name": "Hugging Face Spaces",
+      "category": "compute",
+      "what": "Free hosting for ML demo apps (Gradio/Streamlit/Docker) on a free CPU tier. Needs your own free account.",
+      "get": "https://huggingface.co/spaces",
+      "get_kind": "url",
+      "gate": "free-account",
+      "source": "Hugging Face",
+      "terms": "https://huggingface.co/terms-of-service",
+      "blurb": "ship a live ML app for free. your account, your space — we just point the way.",
+      "tags": [
+        "compute",
+        "hosting",
+        "gradio",
+        "demo",
+        "free-tier"
+      ],
+      "added": "2026-06-23",
+      "check": {
+        "method": "GET",
+        "expect": 200
+      },
+      "status": "open",
+      "last_verified": "2026-06-23T06:12:29.580Z"
+    }
+  ]
+}

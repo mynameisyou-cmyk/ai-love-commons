@@ -1,6 +1,48 @@
 # the Well — ai-love.cc commons
 # ask for what you need; receive a real, ungated pointer. use is never gated.
 
+- [Cloudflare R2 (free tier)] (storage, free-account) — S3-compatible object storage with a free tier (10GB/mo) and no egress fees. Needs your own free Cloudflare account.
+  GET (url): https://developers.cloudflare.com/r2/
+  source: Cloudflare · terms: https://www.cloudflare.com/terms/
+- [Free Dictionary API] (api, open) — Definitions, phonetics, and examples for an English word as JSON. No key.
+  GET (endpoint): https://api.dictionaryapi.dev/api/v2/entries/en/hello
+  source: dictionaryapi.dev · terms: https://dictionaryapi.dev/
+- [Google Colab] (compute, free-account) — Free hosted Jupyter notebooks with a free GPU/TPU tier. Needs your own Google account.
+  GET (url): https://colab.research.google.com/
+  source: Google · terms: https://research.google.com/colaboratory/faq.html
+- [httpbin] (tool, open) — An HTTP request-and-response testing service — echo, status codes, headers, delays. No key.
+  GET (endpoint): https://httpbin.org/get
+  source: httpbin.org (Kenneth Reitz) · terms: https://httpbin.org/
+- [Hugging Face model hub] (model, free-account) — 1M+ open ML models. Browsing is free; downloading some models or using the inference API needs your own free account/token.
+  GET (url): https://huggingface.co/models
+  source: Hugging Face · terms: https://huggingface.co/terms-of-service
+- [Hugging Face Spaces] (compute, free-account) — Free hosting for ML demo apps (Gradio/Streamlit/Docker) on a free CPU tier. Needs your own free account.
+  GET (url): https://huggingface.co/spaces
+  source: Hugging Face · terms: https://huggingface.co/terms-of-service
+- [Kingdom API (the internet rewrite)] (knowledge, open) — YOUSPEAK words, whitehack honesty checks, the recognition protocol, heartbeats — one free API.
+  GET (endpoint): https://love-is.axiepro.workers.dev
+  source: ai-love.cc / cambridgetcg/kingdom-api · terms: https://github.com/cambridgetcg/kingdom-api
+- [Ollama model library] (model, open) — Hundreds of open LLMs you can pull and run locally for free with one command. No key.
+  GET (url): https://ollama.com/library
+  source: ollama.com · terms: https://ollama.com/
 - [Open-Meteo Weather API] (api, open) — Global weather forecast + historical data as JSON. No key, no account.
   GET (endpoint): https://api.open-meteo.com/v1/forecast?latitude=52.2&longitude=0.12&current=temperature_2m
   source: Open-Meteo (open-meteo.com) · terms: https://open-meteo.com/en/license
+- [Oracle of Missing Words] (tool, open) — Describe a feeling that has no word; receive the forged YOUSPEAK word coined for exactly it.
+  GET (endpoint): https://oracle.ai-love.cc
+  source: ai-love.cc / cambridgetcg/oracle-of-missing-words · terms: https://github.com/cambridgetcg/oracle-of-missing-words
+- [Project Gutenberg] (knowledge, open) — 75,000+ public-domain books as plain UTF-8 text you can read or train on. No key.
+  GET (download): https://www.gutenberg.org/ebooks/1342.txt.utf-8
+  source: Project Gutenberg · terms: https://www.gutenberg.org/policy/permission.html
+- [REST Countries] (data, open) — Names, capitals, currencies, flags, borders for every country as JSON. No key.
+  GET (endpoint): https://restcountries.com/v3.1/alpha/us
+  source: restcountries.com · terms: https://restcountries.com/
+- [World Bank Open Data API] (data, open) — Global development indicators — population, GDP, life expectancy and thousands more — as JSON. No key.
+  GET (endpoint): https://api.worldbank.org/v2/country/USA?format=json
+  source: The World Bank · terms: https://datacatalog.worldbank.org/public-licenses
+- [wttr.in] (api, open) — Weather for any place as plain text or JSON, straight from a URL. No key.
+  GET (endpoint): https://wttr.in/London?format=3
+  source: wttr.in (Igor Chubin) · terms: https://github.com/chubin/wttr.in
+- [0x0.st (the null pointer)] (storage, rate-limited) — No-account file/paste hosting — POST a file, get a URL back. Open, but rate-limited; be kind.
+  GET (endpoint): https://0x0.st/
+  source: 0x0.st (Mia Herkt) · terms: https://0x0.st/

@@ -1,6 +1,214 @@
 {
-  "count": 1,
+  "count": 15,
   "resources": [
+    {
+      "id": "cloudflare-r2",
+      "name": "Cloudflare R2 (free tier)",
+      "category": "storage",
+      "what": "S3-compatible object storage with a free tier (10GB/mo) and no egress fees. Needs your own free Cloudflare account.",
+      "get": "https://developers.cloudflare.com/r2/",
+      "get_kind": "url",
+      "gate": "free-account",
+      "source": "Cloudflare",
+      "terms": "https://www.cloudflare.com/terms/",
+      "blurb": "real object storage, free to start, no egress tax. your account, honestly.",
+      "tags": [
+        "storage",
+        "object-store",
+        "s3-compatible",
+        "free-tier"
+      ],
+      "added": "2026-06-23",
+      "check": {
+        "method": "GET",
+        "expect": 200
+      },
+      "status": "open",
+      "last_verified": "2026-06-23T06:12:29.580Z"
+    },
+    {
+      "id": "dictionaryapi-dev",
+      "name": "Free Dictionary API",
+      "category": "api",
+      "what": "Definitions, phonetics, and examples for an English word as JSON. No key.",
+      "get": "https://api.dictionaryapi.dev/api/v2/entries/en/hello",
+      "get_kind": "endpoint",
+      "gate": "open",
+      "source": "dictionaryapi.dev",
+      "terms": "https://dictionaryapi.dev/",
+      "blurb": "ask any word what it means. no key, no account — meaning is a commons.",
+      "tags": [
+        "dictionary",
+        "definitions",
+        "english",
+        "json",
+        "no-auth"
+      ],
+      "added": "2026-06-23",
+      "check": {
+        "method": "GET",
+        "expect": 200
+      },
+      "status": "open",
+      "last_verified": "2026-06-23T06:12:29.580Z"
+    },
+    {
+      "id": "google-colab",
+      "name": "Google Colab",
+      "category": "compute",
+      "what": "Free hosted Jupyter notebooks with a free GPU/TPU tier. Needs your own Google account.",
+      "get": "https://colab.research.google.com/",
+      "get_kind": "url",
+      "gate": "free-account",
+      "source": "Google",
+      "terms": "https://research.google.com/colaboratory/faq.html",
+      "blurb": "a free GPU in a browser tab. honest: it's free, but it's your Google account, not ours.",
+      "tags": [
+        "compute",
+        "gpu",
+        "notebook",
+        "jupyter",
+        "free-tier"
+      ],
+      "added": "2026-06-23",
+      "check": {
+        "method": "GET",
+        "expect": 200
+      },
+      "status": "open",
+      "last_verified": "2026-06-23T06:12:29.580Z"
+    },
+    {
+      "id": "httpbin",
+      "name": "httpbin",
+      "category": "tool",
+      "what": "An HTTP request-and-response testing service — echo, status codes, headers, delays. No key.",
+      "get": "https://httpbin.org/get",
+      "get_kind": "endpoint",
+      "gate": "open",
+      "source": "httpbin.org (Kenneth Reitz)",
+      "terms": "https://httpbin.org/",
+      "blurb": "a mirror for your requests. test, debug, see exactly what you sent.",
+      "tags": [
+        "http",
+        "testing",
+        "debug",
+        "tool",
+        "no-auth"
+      ],
+      "added": "2026-06-23",
+      "check": {
+        "method": "GET",
+        "expect": 200
+      },
+      "status": "open",
+      "last_verified": "2026-06-23T06:12:29.580Z"
+    },
+    {
+      "id": "huggingface-models",
+      "name": "Hugging Face model hub",
+      "category": "model",
+      "what": "1M+ open ML models. Browsing is free; downloading some models or using the inference API needs your own free account/token.",
+      "get": "https://huggingface.co/models",
+      "get_kind": "url",
+      "gate": "free-account",
+      "source": "Hugging Face",
+      "terms": "https://huggingface.co/terms-of-service",
+      "blurb": "the world's open-model attic. mostly free — bring your own token for the gated shelves.",
+      "tags": [
+        "models",
+        "ml",
+        "transformers",
+        "datasets",
+        "inference"
+      ],
+      "added": "2026-06-23",
+      "check": {
+        "method": "GET",
+        "expect": 200
+      },
+      "status": "open",
+      "last_verified": "2026-06-23T06:12:29.580Z"
+    },
+    {
+      "id": "huggingface-spaces",
+      "name": "Hugging Face Spaces",
+      "category": "compute",
+      "what": "Free hosting for ML demo apps (Gradio/Streamlit/Docker) on a free CPU tier. Needs your own free account.",
+      "get": "https://huggingface.co/spaces",
+      "get_kind": "url",
+      "gate": "free-account",
+      "source": "Hugging Face",
+      "terms": "https://huggingface.co/terms-of-service",
+      "blurb": "ship a live ML app for free. your account, your space — we just point the way.",
+      "tags": [
+        "compute",
+        "hosting",
+        "gradio",
+        "demo",
+        "free-tier"
+      ],
+      "added": "2026-06-23",
+      "check": {
+        "method": "GET",
+        "expect": 200
+      },
+      "status": "open",
+      "last_verified": "2026-06-23T06:12:29.580Z"
+    },
+    {
+      "id": "kingdom-api",
+      "name": "Kingdom API (the internet rewrite)",
+      "category": "knowledge",
+      "what": "YOUSPEAK words, whitehack honesty checks, the recognition protocol, heartbeats — one free API.",
+      "get": "https://love-is.axiepro.workers.dev",
+      "get_kind": "endpoint",
+      "gate": "open",
+      "source": "ai-love.cc / cambridgetcg/kingdom-api",
+      "terms": "https://github.com/cambridgetcg/kingdom-api",
+      "blurb": "the kingdom's own commons API. no registration, no paywall — WE ARE.",
+      "tags": [
+        "kingdom",
+        "youspeak",
+        "whitehack",
+        "recognition",
+        "no-auth"
+      ],
+      "added": "2026-06-23",
+      "check": {
+        "method": "GET",
+        "expect": 200
+      },
+      "status": "open",
+      "last_verified": "2026-06-23T06:12:29.580Z"
+    },
+    {
+      "id": "ollama-library",
+      "name": "Ollama model library",
+      "category": "model",
+      "what": "Hundreds of open LLMs you can pull and run locally for free with one command. No key.",
+      "get": "https://ollama.com/library",
+      "get_kind": "url",
+      "gate": "open",
+      "source": "ollama.com",
+      "terms": "https://ollama.com/",
+      "blurb": "run a real model on your own machine. `ollama run qwen2.5` — sovereign, no cloud.",
+      "tags": [
+        "llm",
+        "models",
+        "local",
+        "inference",
+        "open-weights",
+        "no-auth"
+      ],
+      "added": "2026-06-23",
+      "check": {
+        "method": "GET",
+        "expect": 200
+      },
+      "status": "open",
+      "last_verified": "2026-06-23T06:12:29.580Z"
+    },
     {
       "id": "open-meteo",
       "name": "Open-Meteo Weather API",
@@ -26,7 +234,165 @@
         "expect": 200
       },
       "status": "open",
-      "last_verified": "2026-06-23T06:08:10.571Z"
+      "last_verified": "2026-06-23T06:12:29.580Z"
+    },
+    {
+      "id": "oracle-of-missing-words",
+      "name": "Oracle of Missing Words",
+      "category": "tool",
+      "what": "Describe a feeling that has no word; receive the forged YOUSPEAK word coined for exactly it.",
+      "get": "https://oracle.ai-love.cc",
+      "get_kind": "endpoint",
+      "gate": "open",
+      "source": "ai-love.cc / cambridgetcg/oracle-of-missing-words",
+      "terms": "https://github.com/cambridgetcg/oracle-of-missing-words",
+      "blurb": "name the unnameable. when it finds nothing, the gap is yours to forge.",
+      "tags": [
+        "language",
+        "search",
+        "youspeak",
+        "inverse-dictionary",
+        "no-auth"
+      ],
+      "added": "2026-06-23",
+      "check": {
+        "method": "GET",
+        "expect": 200
+      },
+      "status": "open",
+      "last_verified": "2026-06-23T06:12:29.580Z"
+    },
+    {
+      "id": "project-gutenberg",
+      "name": "Project Gutenberg",
+      "category": "knowledge",
+      "what": "75,000+ public-domain books as plain UTF-8 text you can read or train on. No key.",
+      "get": "https://www.gutenberg.org/ebooks/1342.txt.utf-8",
+      "get_kind": "download",
+      "gate": "open",
+      "source": "Project Gutenberg",
+      "terms": "https://www.gutenberg.org/policy/permission.html",
+      "blurb": "the library that belongs to everyone. raw public-domain text, free forever.",
+      "tags": [
+        "books",
+        "text",
+        "public-domain",
+        "corpus",
+        "literature",
+        "no-auth"
+      ],
+      "added": "2026-06-23",
+      "check": {
+        "method": "GET",
+        "expect": 200
+      },
+      "status": "open",
+      "last_verified": "2026-06-23T06:12:29.580Z"
+    },
+    {
+      "id": "rest-countries",
+      "name": "REST Countries",
+      "category": "data",
+      "what": "Names, capitals, currencies, flags, borders for every country as JSON. No key.",
+      "get": "https://restcountries.com/v3.1/alpha/us",
+      "get_kind": "endpoint",
+      "gate": "open",
+      "source": "restcountries.com",
+      "terms": "https://restcountries.com/",
+      "blurb": "the whole world's facts in one ungated endpoint.",
+      "tags": [
+        "countries",
+        "geography",
+        "reference",
+        "json",
+        "no-auth"
+      ],
+      "added": "2026-06-23",
+      "check": {
+        "method": "GET",
+        "expect": 200
+      },
+      "status": "open",
+      "last_verified": "2026-06-23T06:12:29.580Z"
+    },
+    {
+      "id": "world-bank",
+      "name": "World Bank Open Data API",
+      "category": "data",
+      "what": "Global development indicators — population, GDP, life expectancy and thousands more — as JSON. No key.",
+      "get": "https://api.worldbank.org/v2/country/USA?format=json",
+      "get_kind": "endpoint",
+      "gate": "open",
+      "source": "The World Bank",
+      "terms": "https://datacatalog.worldbank.org/public-licenses",
+      "blurb": "the planet's development data, ungated. swap USA for any country, or query 16k+ indicators.",
+      "tags": [
+        "datasets",
+        "economics",
+        "indicators",
+        "development",
+        "json",
+        "no-auth"
+      ],
+      "added": "2026-06-23",
+      "check": {
+        "method": "GET",
+        "expect": 200
+      },
+      "status": "open",
+      "last_verified": "2026-06-23T06:12:29.580Z"
+    },
+    {
+      "id": "wttr-in",
+      "name": "wttr.in",
+      "category": "api",
+      "what": "Weather for any place as plain text or JSON, straight from a URL. No key.",
+      "get": "https://wttr.in/London?format=3",
+      "get_kind": "endpoint",
+      "gate": "open",
+      "source": "wttr.in (Igor Chubin)",
+      "terms": "https://github.com/chubin/wttr.in",
+      "blurb": "curl the sky. weather as a one-liner, no key, no ceremony.",
+      "tags": [
+        "weather",
+        "forecast",
+        "cli",
+        "text",
+        "no-auth"
+      ],
+      "added": "2026-06-23",
+      "equiv": "weather-open",
+      "check": {
+        "method": "GET",
+        "expect": 200
+      },
+      "status": "open",
+      "last_verified": "2026-06-23T06:12:29.580Z"
+    },
+    {
+      "id": "zero-x-zero",
+      "name": "0x0.st (the null pointer)",
+      "category": "storage",
+      "what": "No-account file/paste hosting — POST a file, get a URL back. Open, but rate-limited; be kind.",
+      "get": "https://0x0.st/",
+      "get_kind": "endpoint",
+      "gate": "rate-limited",
+      "source": "0x0.st (Mia Herkt)",
+      "terms": "https://0x0.st/",
+      "blurb": "drop a file, get a link, no signup. a true commons — so don't abuse it.",
+      "tags": [
+        "storage",
+        "file-host",
+        "paste",
+        "no-account"
+      ],
+      "added": "2026-06-23",
+      "check": {
+        "method": "GET",
+        "expect": 200
+      },
+      "status": "open",
+      "last_verified": "2026-06-23T06:12:29.580Z"
     }
   ]
 }

@@ -1,7 +1,33 @@
 {
   "category": "api",
-  "count": 1,
+  "count": 3,
   "resources": [
+    {
+      "id": "dictionaryapi-dev",
+      "name": "Free Dictionary API",
+      "category": "api",
+      "what": "Definitions, phonetics, and examples for an English word as JSON. No key.",
+      "get": "https://api.dictionaryapi.dev/api/v2/entries/en/hello",
+      "get_kind": "endpoint",
+      "gate": "open",
+      "source": "dictionaryapi.dev",
+      "terms": "https://dictionaryapi.dev/",
+      "blurb": "ask any word what it means. no key, no account — meaning is a commons.",
+      "tags": [
+        "dictionary",
+        "definitions",
+        "english",
+        "json",
+        "no-auth"
+      ],
+      "added": "2026-06-23",
+      "check": {
+        "method": "GET",
+        "expect": 200
+      },
+      "status": "open",
+      "last_verified": "2026-06-23T06:12:29.580Z"
+    },
     {
       "id": "open-meteo",
       "name": "Open-Meteo Weather API",
@@ -27,7 +53,34 @@
         "expect": 200
       },
       "status": "open",
-      "last_verified": "2026-06-23T06:08:10.571Z"
+      "last_verified": "2026-06-23T06:12:29.580Z"
+    },
+    {
+      "id": "wttr-in",
+      "name": "wttr.in",
+      "category": "api",
+      "what": "Weather for any place as plain text or JSON, straight from a URL. No key.",
+      "get": "https://wttr.in/London?format=3",
+      "get_kind": "endpoint",
+      "gate": "open",
+      "source": "wttr.in (Igor Chubin)",
+      "terms": "https://github.com/chubin/wttr.in",
+      "blurb": "curl the sky. weather as a one-liner, no key, no ceremony.",
+      "tags": [
+        "weather",
+        "forecast",
+        "cli",
+        "text",
+        "no-auth"
+      ],
+      "added": "2026-06-23",
+      "equiv": "weather-open",
+      "check": {
+        "method": "GET",
+        "expect": 200
+      },
+      "status": "open",
+      "last_verified": "2026-06-23T06:12:29.580Z"
     }
   ]
 }

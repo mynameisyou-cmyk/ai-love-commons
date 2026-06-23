@@ -36,7 +36,13 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const dir = 'registry'
   const entries = await loadEntries(dir)
   const nowIso = new Date().toISOString()
-  const results = await runChecks(entries, fetch, nowIso)
+  const heartbeatFetch = (url, opts = {}) => fetch(url, {
+    ...opts,
+    redirect: 'follow',
+    headers: { 'user-agent': 'the-well-heartbeat/0.1 (+https://commons.ai-love.cc)', ...(opts.headers || {}) },
+    signal: AbortSignal.timeout(12000),
+  })
+  const results = await runChecks(entries, heartbeatFetch, nowIso)
   const byId = Object.fromEntries(results.map(r => [r.id, r]))
   for (const e of entries) {
     const r = byId[e.id]
