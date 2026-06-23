@@ -1,0 +1,13 @@
+{
+  "name": "ai-love-commons",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "the Well (Abzu) — a control-plane commons that hands agents real, ungated pointers to free resources",
+  "scripts": {
+    "build": "node build.mjs",
+    "verify": "node verify.mjs",
+    "test": "node --test",
+    "mcp": "node bin/mcp.mjs"
+  },
+  "license": "CC0-1.0"
+}

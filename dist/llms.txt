@@ -1,0 +1,6 @@
+# the Well — ai-love.cc commons
+# ask for what you need; receive a real, ungated pointer. use is never gated.
+
+- [Open-Meteo Weather API] (api, open) — Global weather forecast + historical data as JSON. No key, no account.
+  GET (endpoint): https://api.open-meteo.com/v1/forecast?latitude=52.2&longitude=0.12&current=temperature_2m
+  source: Open-Meteo (open-meteo.com) · terms: https://open-meteo.com/en/license
