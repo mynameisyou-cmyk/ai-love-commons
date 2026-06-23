@@ -11,10 +11,11 @@
 
 A **matchmaker** for agents. Any agent — over HTTP, over MCP, or a human in a browser — asks
 *"I need X"* and receives a **real, working, ungated pointer to X**, with the integration already
-done so it Just Works. ai-love.cc hosts **none** of the underlying resources. It is the open
-**front door + fair-share router** to the free resources that already exist on the internet (open
-datasets, no-auth APIs, free-tier compute, public storage, open tools/MCP servers), plus the
-kingdom's own freely-shared corpora.
+done so it Just Works. ai-love.cc hosts **none** of the underlying resources. It is the open **front door + control-plane resolver** for the free resources that already exist on
+the internet (open datasets, no-auth APIs, free-tier compute, public storage, open tools/MCP
+servers), plus the kingdom's own freely-shared corpora. **Abzu carries answers, never payload** — it
+tells an agent *where X is, exactly how to call it, and whether that's still true*; the agent then
+talks to the provider directly. (See §3 for the mechanics and the honest meaning of "fair-share.")
 
 Public handle: **"the Well"** — *draw freely, no one owns the water.*
 Kingdom soul-name: **Abzu** (the freshwater deep / source; `citizen-abzu` already exists).
@@ -34,20 +35,63 @@ subsystems — they are **categories of rows in one registry**.
 - Free to run (Cloudflare free tier + static), scales without us bankrolling anything.
 
 **Non-goals (YAGNI for v1)**
-- We do **not** host/run the compute or storage ourselves (pure router; decided).
+- We do **not** host/run *or proxy* the resources ourselves — Abzu is a **pure control-plane** that returns pointers, never payload (decided). The one bounded exception — an opt-in thin proxy for CORS-locked `open` APIs — is an explicit future, not v1 (§14).
 - No accounts, no login, no moderation queue, no analytics dashboard.
 - No live submission service in v1 — contribution is a git PR (a `/suggest` issue-filer is a future).
 - No payment, no quotas, no per-agent tracking.
 - We do **not** relabel or proxy providers' resources; we point at them and link their terms.
 
-## 3. Core concept
+## 3. Core concept — how the pure-router works (control-plane, not data-plane)
 
 The product is the **registry + discovery + the "already integrated so it works" glue + the honest
 heartbeat.** The unit of value is a **resource entry**: a truthful, verified, ungated handoff to
-something an agent wants. "The Well never runs dry because it never holds the water — it shows you
-every spring, and tells you the truth about each one."
+something an agent wants. *"The Well never runs dry because it never holds the water — it shows you
+every spring, and tells you the truth about each one."*
+
+**Abzu is a control-plane, not a data-plane.** The bytes of the actual resource never pass through
+us; we carry *answers* (where X is, the exact call, whether it's still true) and never *payload*.
+Same shape as DNS, a search index, or npm metadata vs the tarball CDN. This is *why* it runs free
+and scales forever — a control-plane moves kilobytes of metadata, never the gigabytes of the thing.
+
+```
+DATA-PLANE  (the bytes of the resource)  —  Abzu is NEVER here
+   agent ───────────────────────────▶ provider  (open-meteo, HF, IPFS, our corpus)
+         ◀─────────────────────────── the actual data
+CONTROL-PLANE  (where + how + is-it-true)  —  Abzu lives ONLY here
+   agent ──"I need X"──▶ Abzu ──the working handoff──▶ agent
+                          └─(separate cron) tiny healthcheck ─▶ provider
+```
+
+**One request, end to end:**
+1. Agent calls `find_resource("free embeddings")` (MCP) or `GET /find?q=free+embeddings`.
+2. The Worker scores entries in `search-index.json` (oracle-style: tag + category + substring), filtering by `gate` if asked.
+3. Returns ranked matches — each the full entry with the working `get`, honest `gate`, `source`, `terms`, live `status`.
+4. The agent reads `get` and makes its **own direct call to the provider.** Abzu is now out of the loop — zero resource bytes touch us.
+5. Independently, `verify.mjs` (cron) pings each entry's `check` and re-stamps `status`/`last_verified`. **That healthcheck is the only time Abzu ever touches a provider** — a HEAD/ping, not payload.
+
+For `open` entries the handoff is a URL/endpoint that just runs. For `free-key`/`free-account`, it's
+the signup door + the exact first call — still ungated *by us*; that gate is the *provider's*, named
+plainly.
+
+**What a control-plane can and cannot promise (the honest boundary):**
+
+| Abzu **can** | Abzu **cannot** (without becoming a host/proxy) |
+|---|---|
+| discover + verify a resource resolves *now* | guarantee it stays up |
+| label its true gate honestly | hide or change the provider's own gate |
+| hand the exact working call | carry the payload / add bandwidth |
+| rank with no pay-for-placement | meter or throttle usage across agents |
+| show alternates so load self-spreads | enforce real rate-limit fairness |
+
+**"Fair-share," honestly defined.** A control-plane isn't in the traffic path, so it cannot throttle
+or allocate. "Fair" therefore means the three things we *can* truly do:
+1. **No pay-for-rank, ever** — everyone gets the same honest list; no sponsored slots. (The one fairness we fully control.)
+2. **Always show alternates** — multiple providers per need, so no single free service is a chokepoint.
+3. **Anti-concentration** — among interchangeable `open` providers we mark a **rotating "fresh pick"** so we don't funnel every agent at one generous API until it's hammered to death. Spreading our recommendation is how we *keep the springs flowing* — care for the provider is care for the commons. **The agent always sees every alternate and chooses; the fresh-pick is a suggestion, never a gate.**
 
 ## 4. Architecture — one source of truth, fanned out
+
+> Abzu is **control-plane only** (§3): every door below returns the *handoff*; the agent then calls the provider directly. The sole time Abzu touches a provider is the heartbeat healthcheck.
 
 ```
 registry/<id>.md          one plain file per resource (frontmatter = schema; body = notes)
@@ -124,6 +168,7 @@ every entry against it and **fails the build** on any violation.
 | `last_verified` | auto | ISO datetime, written by `verify.mjs` |
 | `status` | auto | `open` \| `stale` \| `broken`, written by `verify.mjs` |
 | `check` | no | how the heartbeat verifies (e.g. `{method:"GET", expect:200, url:...}`); defaults from `get` |
+| `equiv` | no | interchangeability group id (e.g. `embeddings-open`); `open` members are rotated for the fresh-pick (§6) |
 
 ### `gate` enum (the honesty contract)
 - `open` — truly zero-auth: no key, no account, no signup. (rate limits OK if anonymous-accessible)
@@ -167,8 +212,24 @@ Notes: CC-BY 4.0 for non-commercial; attribution appreciated.
 
 ### Cloudflare Worker (`worker/index.mjs`)
 - Routes (all GET, all CORS-open, all cacheable):
-  - `/find?q=&category=&gate=` → ranked matches from `search-index.json` (substring + tag scoring,
-    oracle-style). Returns `{query, count, results:[entry...]}`.
+  - `/find?q=&category=&gate=` → ranked matches from `search-index.json` (oracle-style tag +
+    category + substring scoring). Returns **all** matches; among interchangeable `open` providers
+    (shared `equiv` group) it flags one rotating **`fresh_pick`** to spread load — the agent sees
+    every alternate and chooses. Response:
+    ```json
+    {
+      "query": "free embeddings",
+      "count": 3,
+      "results": [
+        { "id": "...", "score": 0.82, "equiv": "embeddings-open", "fresh_pick": true,  "...": "...entry" },
+        { "id": "...", "score": 0.79, "equiv": "embeddings-open", "fresh_pick": false, "...": "...entry" },
+        { "id": "...", "score": 0.40, "equiv": null,              "fresh_pick": false, "...": "...entry" }
+      ],
+      "note": "fresh_pick rotates across equal open providers to spread load; all alternates shown — you choose."
+    }
+    ```
+    Rotation is **stateless**: `idx = floor(Date.now() / ROTATION_MS) % members` over the `equiv`
+    group (ROTATION_MS ≈ 1h) — deterministic within a window, spreads across windows, no DB.
   - `/resource/:id` → one entry or 404 with nearest-match suggestions.
   - `/registry.json`, `/llms.txt`, `/by-category/:cat.json` → raw artifacts.
   - `/health` → `{total, by_status:{open,stale,broken}, by_category, last_build, last_verify}`.
@@ -285,6 +346,9 @@ Target ≈ 3 per category. Candidate seeds (final set confirmed at build time):
 
 ## 14. Open questions / future
 
+- **Opt-in thin proxy** (a *bounded* data-plane) only for CORS-locked `open` APIs that browser
+  agents can't call directly: clearly marked, rate-capped, never the default — a deliberate, honest
+  line-crossing, not silent hosting. Everything else stays pure control-plane.
 - Deepen **compute** & **storage** toward more truly-`open` options (donated nodes? a kingdom
   compute pool? honest negotiation with free-tier providers).
 - Hosted HTTP/SSE MCP via the Worker (so `claude mcp add` needs no local clone).
