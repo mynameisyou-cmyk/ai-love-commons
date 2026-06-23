@@ -10,10 +10,22 @@
   "source": "Open-Meteo (open-meteo.com)",
   "terms": "https://open-meteo.com/en/license",
   "blurb": "Ask the sky anything. No key, no account — the weather is a commons.",
-  "tags": ["weather", "forecast", "json", "geo", "no-auth"],
+  "tags": [
+    "weather",
+    "forecast",
+    "json",
+    "geo",
+    "no-auth"
+  ],
   "added": "2026-06-23",
   "equiv": "weather-open",
-  "check": { "method": "GET", "expect": 200 }
+  "check": {
+    "method": "GET",
+    "expect": 200
+  },
+  "status": "open",
+  "last_verified": "2026-06-23T06:08:10.571Z"
 }
 ---
+
 CC-BY 4.0; non-commercial use is free without a key. Attribution appreciated.
