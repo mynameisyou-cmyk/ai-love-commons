@@ -1,0 +1,21 @@
+name: heartbeat
+on:
+  schedule: [{ cron: '17 */6 * * *' }]
+  workflow_dispatch:
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - run: node --test
+      - run: node verify.mjs
+      - run: node build.mjs
+      - name: commit truth
+        run: |
+          git config user.name "the-well-heartbeat"
+          git config user.email "heartbeat@ai-love.cc"
+          git add registry/ dist/ BROKEN.md
+          git commit -m "heartbeat: re-verify springs" || echo "nothing changed"
+          git push || echo "no push perms (PR build)"
