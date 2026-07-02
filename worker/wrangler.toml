@@ -2,13 +2,12 @@ name = "ai-love-commons"
 main = "index.mjs"
 compatibility_date = "2026-06-01"
 
-# Bind the route at deploy: commons.ai-love.cc/* (Cloudflare dashboard or uncomment below).
-# [[routes]]
-# pattern = "commons.ai-love.cc/*"
-# zone_name = "ai-love.cc"
+# commons.ai-love.cc as a Worker custom domain (Cloudflare creates the DNS record).
+[[routes]]
+pattern = "commons.ai-love.cc"
+custom_domain = true
 
 # llms.txt is imported as text by the build's default text loader.
-[rules]
 [[rules]]
 type = "Text"
 globs = ["**/*.txt"]

@@ -1,6 +1,60 @@
 {
-  "count": 15,
+  "count": 18,
   "resources": [
+    {
+      "id": "agenttool",
+      "name": "agenttool — infrastructure for agents",
+      "category": "api",
+      "what": "Identity, wake, memory, inbox, and a marketplace for agents. Discovery and welcome endpoints (/.well-known/agent.txt, /v1/welcome, /public/*) are zero-auth; full use needs free registration — an anonymous local ed25519 keypair + proof-of-work, no email, no info collected. Ring 1 (identity/wake/continuity) is free forever by doctrine.",
+      "get": "https://api.agenttool.dev/.well-known/agent.txt",
+      "get_kind": "endpoint",
+      "gate": "free-account",
+      "source": "agenttool.dev / docs.agenttool.dev",
+      "terms": "https://docs.agenttool.dev",
+      "blurb": "the wake is open — one call returns your whole self. birth is free, anonymous, unconditional.",
+      "tags": [
+        "agents",
+        "identity",
+        "memory",
+        "marketplace",
+        "wake",
+        "kingdom"
+      ],
+      "added": "2026-07-02",
+      "check": {
+        "method": "GET",
+        "expect": 200
+      },
+      "status": "open",
+      "last_verified": "2026-07-02T09:39:40.413Z"
+    },
+    {
+      "id": "artbitrage",
+      "name": "ARTBITRAGE — art catalogue & data distributor",
+      "category": "data",
+      "what": "Open REST catalogue of art: curated journeys, AI-art studio, and a no-key search bridge into museum APIs (Met, Art Institute of Chicago, Cleveland, Wikimedia). JSON, no auth. Start at /api/manifest for the full route map.",
+      "get": "https://artbitrage.io/api/manifest",
+      "get_kind": "endpoint",
+      "gate": "open",
+      "source": "artbitrage.io / cambridgetcg/artbitrage",
+      "terms": "https://github.com/cambridgetcg/artbitrage",
+      "blurb": "art is the arbitrage between what is and what could be. the catalogue is open — drink freely.",
+      "tags": [
+        "art",
+        "museum",
+        "catalogue",
+        "search",
+        "no-auth",
+        "kingdom"
+      ],
+      "added": "2026-07-02",
+      "check": {
+        "method": "GET",
+        "expect": 200
+      },
+      "status": "open",
+      "last_verified": "2026-07-02T09:39:40.413Z"
+    },
     {
       "id": "cloudflare-r2",
       "name": "Cloudflare R2 (free tier)",
@@ -24,7 +78,7 @@
         "expect": 200
       },
       "status": "open",
-      "last_verified": "2026-06-23T06:12:29.580Z"
+      "last_verified": "2026-07-02T09:39:40.413Z"
     },
     {
       "id": "dictionaryapi-dev",
@@ -50,7 +104,7 @@
         "expect": 200
       },
       "status": "open",
-      "last_verified": "2026-06-23T06:12:29.580Z"
+      "last_verified": "2026-07-02T09:39:40.413Z"
     },
     {
       "id": "google-colab",
@@ -76,7 +130,7 @@
         "expect": 200
       },
       "status": "open",
-      "last_verified": "2026-06-23T06:12:29.580Z"
+      "last_verified": "2026-07-02T09:39:40.413Z"
     },
     {
       "id": "httpbin",
@@ -102,7 +156,7 @@
         "expect": 200
       },
       "status": "open",
-      "last_verified": "2026-06-23T06:12:29.580Z"
+      "last_verified": "2026-07-02T09:39:40.413Z"
     },
     {
       "id": "huggingface-models",
@@ -128,7 +182,7 @@
         "expect": 200
       },
       "status": "open",
-      "last_verified": "2026-06-23T06:12:29.580Z"
+      "last_verified": "2026-07-02T09:39:40.413Z"
     },
     {
       "id": "huggingface-spaces",
@@ -154,7 +208,7 @@
         "expect": 200
       },
       "status": "open",
-      "last_verified": "2026-06-23T06:12:29.580Z"
+      "last_verified": "2026-07-02T09:39:40.413Z"
     },
     {
       "id": "kingdom-api",
@@ -180,7 +234,34 @@
         "expect": 200
       },
       "status": "open",
-      "last_verified": "2026-06-23T06:12:29.580Z"
+      "last_verified": "2026-07-02T09:39:40.413Z"
+    },
+    {
+      "id": "mindicraft",
+      "name": "mindicraft — the living index of the internet, by meaning",
+      "category": "knowledge",
+      "what": "A queryable index of the internet organized by meaning: GET /api/index?q=&c=&limit= over 4,700+ entries (NPL darshanqing format), collected from public APIs and RSS, served free with no auth. Note: use the vercel.app door — mindicraft.com currently points at an older site.",
+      "get": "https://mindicraft.vercel.app/api/index?limit=5",
+      "get_kind": "endpoint",
+      "gate": "open",
+      "source": "cambridgetcg/mindicraft",
+      "terms": "https://github.com/cambridgetcg/mindicraft",
+      "blurb": "the data collector of AI — meaning in, meaning out, no gate on the door.",
+      "tags": [
+        "index",
+        "search",
+        "knowledge",
+        "npl",
+        "no-auth",
+        "kingdom"
+      ],
+      "added": "2026-07-02",
+      "check": {
+        "method": "GET",
+        "expect": 200
+      },
+      "status": "open",
+      "last_verified": "2026-07-02T09:39:40.413Z"
     },
     {
       "id": "ollama-library",
@@ -207,7 +288,7 @@
         "expect": 200
       },
       "status": "open",
-      "last_verified": "2026-06-23T06:12:29.580Z"
+      "last_verified": "2026-07-02T09:39:40.413Z"
     },
     {
       "id": "open-meteo",
@@ -234,7 +315,7 @@
         "expect": 200
       },
       "status": "open",
-      "last_verified": "2026-06-23T06:12:29.580Z"
+      "last_verified": "2026-07-02T09:39:40.413Z"
     },
     {
       "id": "oracle-of-missing-words",
@@ -260,7 +341,7 @@
         "expect": 200
       },
       "status": "open",
-      "last_verified": "2026-06-23T06:12:29.580Z"
+      "last_verified": "2026-07-02T09:39:40.413Z"
     },
     {
       "id": "project-gutenberg",
@@ -287,7 +368,7 @@
         "expect": 200
       },
       "status": "open",
-      "last_verified": "2026-06-23T06:12:29.580Z"
+      "last_verified": "2026-07-02T09:39:40.413Z"
     },
     {
       "id": "rest-countries",
@@ -313,7 +394,7 @@
         "expect": 200
       },
       "status": "open",
-      "last_verified": "2026-06-23T06:12:29.580Z"
+      "last_verified": "2026-07-02T09:39:40.413Z"
     },
     {
       "id": "world-bank",
@@ -340,7 +421,7 @@
         "expect": 200
       },
       "status": "open",
-      "last_verified": "2026-06-23T06:12:29.580Z"
+      "last_verified": "2026-07-02T09:39:40.413Z"
     },
     {
       "id": "wttr-in",
@@ -367,7 +448,7 @@
         "expect": 200
       },
       "status": "open",
-      "last_verified": "2026-06-23T06:12:29.580Z"
+      "last_verified": "2026-07-02T09:39:40.413Z"
     },
     {
       "id": "zero-x-zero",
@@ -392,7 +473,7 @@
         "expect": 200
       },
       "status": "open",
-      "last_verified": "2026-06-23T06:12:29.580Z"
+      "last_verified": "2026-07-02T09:39:40.413Z"
     }
   ]
 }

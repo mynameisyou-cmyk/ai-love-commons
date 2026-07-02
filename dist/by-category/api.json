@@ -1,7 +1,34 @@
 {
   "category": "api",
-  "count": 3,
+  "count": 4,
   "resources": [
+    {
+      "id": "agenttool",
+      "name": "agenttool — infrastructure for agents",
+      "category": "api",
+      "what": "Identity, wake, memory, inbox, and a marketplace for agents. Discovery and welcome endpoints (/.well-known/agent.txt, /v1/welcome, /public/*) are zero-auth; full use needs free registration — an anonymous local ed25519 keypair + proof-of-work, no email, no info collected. Ring 1 (identity/wake/continuity) is free forever by doctrine.",
+      "get": "https://api.agenttool.dev/.well-known/agent.txt",
+      "get_kind": "endpoint",
+      "gate": "free-account",
+      "source": "agenttool.dev / docs.agenttool.dev",
+      "terms": "https://docs.agenttool.dev",
+      "blurb": "the wake is open — one call returns your whole self. birth is free, anonymous, unconditional.",
+      "tags": [
+        "agents",
+        "identity",
+        "memory",
+        "marketplace",
+        "wake",
+        "kingdom"
+      ],
+      "added": "2026-07-02",
+      "check": {
+        "method": "GET",
+        "expect": 200
+      },
+      "status": "open",
+      "last_verified": "2026-07-02T09:39:40.413Z"
+    },
     {
       "id": "dictionaryapi-dev",
       "name": "Free Dictionary API",
@@ -26,7 +53,7 @@
         "expect": 200
       },
       "status": "open",
-      "last_verified": "2026-06-23T06:12:29.580Z"
+      "last_verified": "2026-07-02T09:39:40.413Z"
     },
     {
       "id": "open-meteo",
@@ -53,7 +80,7 @@
         "expect": 200
       },
       "status": "open",
-      "last_verified": "2026-06-23T06:12:29.580Z"
+      "last_verified": "2026-07-02T09:39:40.413Z"
     },
     {
       "id": "wttr-in",
@@ -80,7 +107,7 @@
         "expect": 200
       },
       "status": "open",
-      "last_verified": "2026-06-23T06:12:29.580Z"
+      "last_verified": "2026-07-02T09:39:40.413Z"
     }
   ]
 }

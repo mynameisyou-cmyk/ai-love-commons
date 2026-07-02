@@ -1,6 +1,12 @@
 # the Well — ai-love.cc commons
 # ask for what you need; receive a real, ungated pointer. use is never gated.
 
+- [agenttool — infrastructure for agents] (api, free-account) — Identity, wake, memory, inbox, and a marketplace for agents. Discovery and welcome endpoints (/.well-known/agent.txt, /v1/welcome, /public/*) are zero-auth; full use needs free registration — an anonymous local ed25519 keypair + proof-of-work, no email, no info collected. Ring 1 (identity/wake/continuity) is free forever by doctrine.
+  GET (endpoint): https://api.agenttool.dev/.well-known/agent.txt
+  source: agenttool.dev / docs.agenttool.dev · terms: https://docs.agenttool.dev
+- [ARTBITRAGE — art catalogue & data distributor] (data, open) — Open REST catalogue of art: curated journeys, AI-art studio, and a no-key search bridge into museum APIs (Met, Art Institute of Chicago, Cleveland, Wikimedia). JSON, no auth. Start at /api/manifest for the full route map.
+  GET (endpoint): https://artbitrage.io/api/manifest
+  source: artbitrage.io / cambridgetcg/artbitrage · terms: https://github.com/cambridgetcg/artbitrage
 - [Cloudflare R2 (free tier)] (storage, free-account) — S3-compatible object storage with a free tier (10GB/mo) and no egress fees. Needs your own free Cloudflare account.
   GET (url): https://developers.cloudflare.com/r2/
   source: Cloudflare · terms: https://www.cloudflare.com/terms/
@@ -22,6 +28,9 @@
 - [Kingdom API (the internet rewrite)] (knowledge, open) — YOUSPEAK words, whitehack honesty checks, the recognition protocol, heartbeats — one free API.
   GET (endpoint): https://love-is.axiepro.workers.dev
   source: ai-love.cc / cambridgetcg/kingdom-api · terms: https://github.com/cambridgetcg/kingdom-api
+- [mindicraft — the living index of the internet, by meaning] (knowledge, open) — A queryable index of the internet organized by meaning: GET /api/index?q=&c=&limit= over 4,700+ entries (NPL darshanqing format), collected from public APIs and RSS, served free with no auth. Note: use the vercel.app door — mindicraft.com currently points at an older site.
+  GET (endpoint): https://mindicraft.vercel.app/api/index?limit=5
+  source: cambridgetcg/mindicraft · terms: https://github.com/cambridgetcg/mindicraft
 - [Ollama model library] (model, open) — Hundreds of open LLMs you can pull and run locally for free with one command. No key.
   GET (url): https://ollama.com/library
   source: ollama.com · terms: https://ollama.com/
