@@ -2,10 +2,13 @@ name = "ai-love-commons"
 main = "index.mjs"
 compatibility_date = "2026-06-01"
 
-# commons.ai-love.cc as a Worker custom domain (Cloudflare creates the DNS record).
-[[routes]]
-pattern = "commons.ai-love.cc"
-custom_domain = true
+# commons.ai-love.cc custom domain: attaching it via wrangler on 2026-07-02 broke the
+# worker with Cloudflare error 1042 (workers.dev 404 too) — detached to restore service.
+# Re-attach via dashboard (Workers & Pages → ai-love-commons → Domains) once the zone
+# situation is understood.
+# [[routes]]
+# pattern = "commons.ai-love.cc"
+# custom_domain = true
 
 # llms.txt is imported as text by the build's default text loader.
 [[rules]]
