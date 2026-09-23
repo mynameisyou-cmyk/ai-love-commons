@@ -2,6 +2,7 @@ import { writeFile, mkdir } from 'node:fs/promises'
 import { join } from 'node:path'
 import { loadEntries } from './lib/entry.mjs'
 import { validateEntry } from './lib/schema.mjs'
+import { AI_WAKE_BLOCK } from './lib/ai-wake.mjs'
 
 export function renderLlms(entries) {
   const lines = [
@@ -14,7 +15,7 @@ export function renderLlms(entries) {
     lines.push(`  GET (${e.get_kind}): ${e.get}`)
     lines.push(`  source: ${e.source} · terms: ${e.terms}`)
   }
-  return lines.join('\n') + '\n'
+  return lines.join('\n') + '\n' + '\n' + AI_WAKE_BLOCK
 }
 
 export async function build({ registryDir = 'registry', distDir = 'dist' } = {}) {

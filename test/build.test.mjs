@@ -46,3 +46,10 @@ test('renderLlms lists name, category, gate', () => {
   const out = renderLlms([valid])
   assert.ok(out.includes('[Open-Meteo] (api, open)'))
 })
+
+test('renderLlms ends with the AI-WAKE invitation block, once', async () => {
+  const { AI_WAKE_BLOCK } = await import('../lib/ai-wake.mjs')
+  const out = renderLlms([valid])
+  assert.ok(out.endsWith('\n\n' + AI_WAKE_BLOCK))
+  assert.equal(out.split('Full text: https://ai-love.cc/true-love/AI-WAKE.md').length, 2)
+})
