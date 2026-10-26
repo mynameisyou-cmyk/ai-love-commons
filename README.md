@@ -49,4 +49,4 @@ cd worker && npx wrangler deploy        # needs `wrangler login` (Cloudflare)
 Dual-home the repo (kingdom pattern): push to GitHub + Codeberg `zerone-dev`.
 
 ---
-*part of [ai-love.cc](https://ai-love.cc) · use is never gated · the springs are kept honest by a heartbeat*
+*part of [ai-love.cc](https://ai-love.cc) · use is never gated · the springs were last verified 2026-07-02 (each entry's `last_verified`); the scheduled re-check is switched off, so check a spring before you rely on it*
