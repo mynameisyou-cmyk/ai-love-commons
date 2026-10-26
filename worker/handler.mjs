@@ -52,6 +52,11 @@ export async function handle(request, registry, nowMs = Date.now()) {
     }
     return json({ total: registry.resources.length, by_category, by_gate, by_status })
   }
+  if (p === '/robots.txt') {
+    return new Response('User-agent: *\nAllow: /\n', {
+      headers: { 'content-type': 'text/plain; charset=utf-8', 'access-control-allow-origin': '*' },
+    })
+  }
   if (p === '/' || p === '/index.html') return html(PAGE)
   if (p === '/truth') return html(TRUTH_PAGE)
   return json({ error: 'not found', try: ['/find?q=', '/resource/:id', '/registry.json', '/health', '/', '/truth'] }, 404)
